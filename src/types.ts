@@ -1,21 +1,22 @@
-export type BahasaAsal =
-  | 'arab'
-  | 'belanda'
-  | 'inggris'
-  | 'prancis'
-  | 'sanskerta'
-  | 'jawa'
-  | 'bali'
-  | 'aceh'
-  | 'sunda'
-  | 'rejang'
-  | 'korea'
-  | 'jepang'
-  | 'cina'
-  | 'latin'
-  | 'yunani'
-  | 'wolio'
-  | 'umum';
+export enum BahasaAsal {
+  ARAB,
+  BELANDA,
+  INGGRIS,
+  PRANCIS,
+  SANSKERTA,
+  JAWA,
+  BALI,
+  ACEH,
+  SUNDA,
+  REJANG,
+  KOREA,
+  JEPANG,
+  CINA,
+  LATIN,
+  YUNANI,
+  WOLIO,
+  UMUM,
+}
 
 export const ModeSerapan = {
   KETAT: 'ketat',

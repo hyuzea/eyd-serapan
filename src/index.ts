@@ -13,12 +13,17 @@ export * from './types.js';
  */
 export function serapan(
   asing: string,
-  asal: string | BahasaAsal = 'umum',
+  asal: string | BahasaAsal = BahasaAsal.UMUM,
   opsi: OpsiSerapan = {}
 ): string {
   if (!asing) return '';
 
-  const cleanAsal = asal.toLowerCase().trim() as BahasaAsal;
+  let cleanAsal: string;
+  if (typeof asal === 'number') {
+    cleanAsal = BahasaAsal[asal] ? BahasaAsal[asal].toLowerCase() : 'umum';
+  } else {
+    cleanAsal = asal.toLowerCase().trim();
+  }
 
   // Dynamic phonetic/morphological conversion using rule engine
   return applyRules(asing, cleanAsal, opsi);

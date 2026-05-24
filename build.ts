@@ -32,24 +32,25 @@ if (!result.success) {
 console.log('ESM bundle built successfully: dist/index.js');
 
 // 3. Write manual typings (.d.ts) for absolute lightweight zero-dependency types
-const typesContent = `export type BahasaAsal =
-  | 'arab'
-  | 'belanda'
-  | 'inggris'
-  | 'prancis'
-  | 'sanskerta'
-  | 'jawa'
-  | 'bali'
-  | 'aceh'
-  | 'sunda'
-  | 'rejang'
-  | 'korea'
-  | 'jepang'
-  | 'cina'
-  | 'latin'
-  | 'yunani'
-  | 'wolio'
-  | 'umum';
+const typesContent = `export enum BahasaAsal {
+  ARAB,
+  BELANDA,
+  INGGRIS,
+  PRANCIS,
+  SANSKERTA,
+  JAWA,
+  BALI,
+  ACEH,
+  SUNDA,
+  REJANG,
+  KOREA,
+  JEPANG,
+  CINA,
+  LATIN,
+  YUNANI,
+  WOLIO,
+  UMUM,
+}
 
 export const ModeSerapan: {
   readonly KETAT: 'ketat';

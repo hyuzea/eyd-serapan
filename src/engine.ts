@@ -24,7 +24,7 @@ export function normalizeDiacritics(word: string): string {
   return w;
 }
 
-export function applyRules(word: string, origin: BahasaAsal, opsi: OpsiSerapan = {}): string {
+export function applyRules(word: string, origin: BahasaAsal | string, opsi: OpsiSerapan = {}): string {
   let res = normalizeDiacritics(word);
 
   // 1. Language-Specific Preprocessing
