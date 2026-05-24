@@ -28,25 +28,29 @@ npm install eyd-serapan
 ## Cara Penggunaan
 
 ```typescript
-import { serapan } from 'eyd-serapan';
+import { serapan, BahasaAsal, ModeSerapan } from 'eyd-serapan';
 
-// 1. Serapan Umum (Inggris/Eropa)
-console.log(serapan('capitalism', 'umum'));  // "kapitalisme"
-console.log(serapan('scientific', 'umum'));  // "saintifik"
-console.log(serapan('creativity', 'umum'));  // "kreativitas"
-console.log(serapan('check', 'umum'));       // "cek"
+// 1. Serapan Umum (Inggris/Eropa) - Bisa menggunakan String biasa
+console.log(serapan('capitalism', 'inggris'));  // "kapitalisme"
+console.log(serapan('scientific', 'inggris'));  // "saintifik"
+console.log(serapan('creativity', 'inggris'));  // "kreativitas"
+console.log(serapan('check', 'umum'));          // "cek"
 
-// 2. Serapan Arab
-console.log(serapan('khasr', 'arab'));       // "khasar" (penyisipan vokal vokal sebelumnya)
-console.log(serapan('sihr', 'arab'));        // "sihir"
-console.log(serapan('nubuwwah', 'arab'));    // "nubuat" (peluruhan wau ganda)
-console.log(serapan("imla'", 'arab'));       // "imla" (hamzah akhir dihilangkan)
-console.log(serapan("ta'rif", 'arab'));      // "takrif" (hamzah tengah menjadi k)
+// 2. Menggunakan Enum "BahasaAsal" untuk kode yang self-documenting & terstruktur
+console.log(serapan('khasr', BahasaAsal.ARAB));         // "khasar" (penyisipan vokal)
+console.log(serapan('sihr', BahasaAsal.ARAB));          // "sihir"
+console.log(serapan('nubuwwah', BahasaAsal.ARAB));      // "nubuat" (peluruhan wau ganda)
+console.log(serapan("imla'", BahasaAsal.ARAB));       // "imla" (hamzah akhir dihilangkan)
+console.log(serapan("ta'rif", BahasaAsal.ARAB));        // "takrif" (hamzah tengah menjadi k)
 
-// 3. Serapan Sanskerta / Nusantara
-console.log(serapan('çila', 'sanskerta'));   // "sila"
-console.log(serapan('dharma', 'sanskerta')); // "darma"
-console.log(serapan('kenpo', 'jepang'));     // "kempo" (n sebelum p menjadi m)
+// 3. Serapan Sanskerta / Nusantara / Asia Timur
+console.log(serapan('çila', BahasaAsal.SANSKERTA));     // "sila"
+console.log(serapan('dharma', BahasaAsal.SANSKERTA));   // "darma"
+console.log(serapan('kenpo', BahasaAsal.JEPANG));       // "kempo" (n sebelum p menjadi m)
+
+// 4. Menggunakan Mode Penyerapan dengan Opsi
+console.log(serapan('communication', BahasaAsal.INGGRIS, { mode: ModeSerapan.KETAT })); 
+// "komunitasion" (hanya penyesuaian huruf dasar tanpa konversi sufiks -tion)
 ```
 
 ## API
@@ -54,11 +58,28 @@ console.log(serapan('kenpo', 'jepang'));     // "kempo" (n sebelum p menjadi m)
 ### `serapan(asing: string, asal?: string | BahasaAsal, opsi?: OpsiSerapan): string`
 
 - **`asing`**: Kata asing yang ingin diserap.
-- **`asal`**: Bahasa asal kata serapan. Pilihan: `'arab' | 'belanda' | 'inggris' | 'prancis' | 'sanskerta' | 'jawa' | 'bali' | 'aceh' | 'sunda' | 'rejang' | 'korea' | 'jepang' | 'cina' | 'latin' | 'yunani' | 'wolio' | 'umum'`. Default: `'umum'`.
+- **`asal`**: Bahasa asal kata serapan. Dapat menerima nilai dari **`enum BahasaAsal`** atau nilai `string` mentah berikut:
+  * `BahasaAsal.ARAB` atau `'arab'`
+  * `BahasaAsal.BELANDA` atau `'belanda'`
+  * `BahasaAsal.INGGRIS` atau `'inggris'`
+  * `BahasaAsal.PRANCIS` atau `'prancis'`
+  * `BahasaAsal.SANSKERTA` atau `'sanskerta'`
+  * `BahasaAsal.JAWA` atau `'jawa'`
+  * `BahasaAsal.BALI` atau `'bali'`
+  * `BahasaAsal.ACEH` atau `'aceh'`
+  * `BahasaAsal.SUNDA` atau `'sunda'`
+  * `BahasaAsal.REJANG` or `'rejang'`
+  * `BahasaAsal.KOREA` atau `'korea'`
+  * `BahasaAsal.JEPANG` atau `'jepang'`
+  * `BahasaAsal.CINA` atau `'cina'`
+  * `BahasaAsal.LATIN` atau `'latin'`
+  * `BahasaAsal.YUNANI` atau `'yunani'`
+  * `BahasaAsal.WOLIO` atau `'wolio'`
+  * `BahasaAsal.UMUM` atau `'umum'` (Default)
 - **`opsi`**: Konfigurasi tambahan:
-  - `mode?: 'ketat' | 'longgar'` (Default `'longgar'`). 
-    - `'longgar'`: Mengonversi akhiran asing (sufiks) ke padanan bahasa Indonesia (misal: `-ty` -> `-tas`, `-tion` -> `-si`).
-    - `'ketat'`: Hanya melakukan penyesuaian huruf/fonetik dasar secara ketat dan melewati penyesuaian sufiks kata. Anda dapat menggunakan konstanta yang diekspor `ModeSerapan.KETAT` atau `ModeSerapan.LONGGAR`.
+  - `mode?: TipeModeSerapan` (Default `ModeSerapan.LONGGAR` / `'longgar'`). 
+    - `ModeSerapan.LONGGAR` atau `'longgar'`: Mengonversi akhiran asing (sufiks) ke padanan bahasa Indonesia (misal: `-ty` -> `-tas`, `-tion` -> `-si`).
+    - `ModeSerapan.KETAT` atau `'ketat'`: Hanya melakukan penyesuaian huruf/fonetik dasar secara ketat dan melewati penyesuaian sufiks kata.
 
 ## Lisensi
 
