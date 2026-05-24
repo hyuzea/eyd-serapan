@@ -1,11 +1,10 @@
 import { expect, test, describe } from 'bun:test';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { serapan } from '../src/index.js';
+import { serapan } from '../dist/index.js';
 
-const workspaceDir = 'F:\\work\\00-oss\\eyd-serapan';
-const fileUmum = join(workspaceDir, 'serapan-umum.md');
-const fileKhusus = join(workspaceDir, 'serapan-khusus.md');
+const fileUmum = join(import.meta.dir, '..', 'serapan-umum.md');
+const fileKhusus = join(import.meta.dir, '..', 'serapan-khusus.md');
 
 interface BenchmarkCase {
   original: string;
@@ -266,10 +265,6 @@ describe('Dynamic Rule Engine Generalization (Unseen Vocabulary)', () => {
     expect(serapan('scientific', 'umum')).toBe('saintifik');
   });
 
-  test('European suffix adaptations with ModeSerapan.KETAT', () => {
-    expect(serapan('creativity', 'umum', { mode: 'ketat' })).toBe('kreativity');
-    expect(serapan('capitalism', 'umum', { mode: 'ketat' })).toBe('kapitalism');
-  });
 
   test('Sanskrit ç and dh conversions on unseen words', () => {
     expect(serapan('çila', 'sanskerta')).toBe('sila');

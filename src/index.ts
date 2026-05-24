@@ -1,4 +1,4 @@
-import { BahasaAsal, OpsiSerapan } from './types.js';
+import { BahasaAsal } from './types.js';
 import { applyRules } from './engine.js';
 
 export * from './types.js';
@@ -13,8 +13,7 @@ export * from './types.js';
  */
 export function serapan(
   asing: string,
-  asal: string | BahasaAsal = BahasaAsal.UMUM,
-  opsi: OpsiSerapan = {}
+  asal: string | BahasaAsal = BahasaAsal.UMUM
 ): string {
   if (!asing) return '';
 
@@ -26,5 +25,5 @@ export function serapan(
   }
 
   // Dynamic phonetic/morphological conversion using rule engine
-  return applyRules(asing, cleanAsal, opsi);
+  return applyRules(asing, cleanAsal);
 }

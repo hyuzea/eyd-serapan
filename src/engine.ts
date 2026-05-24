@@ -1,4 +1,4 @@
-import { BahasaAsal, OpsiSerapan } from './types.js';
+import { BahasaAsal } from './types.js';
 
 // Normalize diacritics and special characters for consistent rule processing
 export function normalizeDiacritics(word: string): string {
@@ -24,7 +24,7 @@ export function normalizeDiacritics(word: string): string {
   return w;
 }
 
-export function applyRules(word: string, origin: BahasaAsal | string, opsi: OpsiSerapan = {}): string {
+export function applyRules(word: string, origin: string): string {
   let res = normalizeDiacritics(word);
 
   // 1. Language-Specific Preprocessing
@@ -97,7 +97,7 @@ export function applyRules(word: string, origin: BahasaAsal | string, opsi: Opsi
 
   // 2. Suffix transformations (primarily English, Dutch, French, Latin)
   const isEuropeanOrGeneral = ['inggris', 'belanda', 'prancis', 'latin', 'yunani', 'umum'].includes(origin);
-  if (isEuropeanOrGeneral && opsi.mode !== 'ketat') {
+  if (isEuropeanOrGeneral) {
     // Replace typical endings
     res = res.replace(/ation$/g, 'asi');
     res = res.replace(/(s?s|t)ion$/g, 'si'); // handles -tion, -sion, -ssion -> -si

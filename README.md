@@ -28,7 +28,7 @@ npm install eyd-serapan
 ## Cara Penggunaan
 
 ```typescript
-import { serapan, BahasaAsal, ModeSerapan } from 'eyd-serapan';
+import { serapan, BahasaAsal } from 'eyd-serapan';
 
 // 1. Serapan Umum (Inggris/Eropa) - Bisa menggunakan String biasa
 console.log(serapan('capitalism', 'inggris'));  // "kapitalisme"
@@ -40,22 +40,18 @@ console.log(serapan('check', 'umum'));          // "cek"
 console.log(serapan('khasr', BahasaAsal.ARAB));         // "khasar" (penyisipan vokal)
 console.log(serapan('sihr', BahasaAsal.ARAB));          // "sihir"
 console.log(serapan('nubuwwah', BahasaAsal.ARAB));      // "nubuat" (peluruhan wau ganda)
-console.log(serapan("imla'", BahasaAsal.ARAB));       // "imla" (hamzah akhir dihilangkan)
+console.log(serapan("imla'", BahasaAsal.ARAB));         // "imla" (hamzah akhir dihilangkan)
 console.log(serapan("ta'rif", BahasaAsal.ARAB));        // "takrif" (hamzah tengah menjadi k)
 
 // 3. Serapan Sanskerta / Nusantara / Asia Timur
 console.log(serapan('çila', BahasaAsal.SANSKERTA));     // "sila"
 console.log(serapan('dharma', BahasaAsal.SANSKERTA));   // "darma"
 console.log(serapan('kenpo', BahasaAsal.JEPANG));       // "kempo" (n sebelum p menjadi m)
-
-// 4. Menggunakan Mode Penyerapan dengan Opsi
-console.log(serapan('communication', BahasaAsal.INGGRIS, { mode: ModeSerapan.KETAT })); 
-// "komunikation" (hanya penyesuaian huruf dasar tanpa konversi sufiks -tion)
 ```
 
 ## API
 
-### `serapan(asing: string, asal?: string | BahasaAsal, opsi?: OpsiSerapan): string`
+### `serapan(asing: string, asal?: string | BahasaAsal): string`
 
 - **`asing`**: Kata asing yang ingin diserap.
 - **`asal`**: Bahasa asal kata serapan. Dapat menerima nilai dari **`enum BahasaAsal`** atau nilai `string` mentah berikut:
@@ -76,10 +72,6 @@ console.log(serapan('communication', BahasaAsal.INGGRIS, { mode: ModeSerapan.KET
   * `BahasaAsal.YUNANI` atau `'yunani'`
   * `BahasaAsal.WOLIO` atau `'wolio'`
   * `BahasaAsal.UMUM` atau `'umum'` (Default)
-- **`opsi`**: Konfigurasi tambahan:
-  - `mode?: TipeModeSerapan` (Default `ModeSerapan.LONGGAR` / `'longgar'`). 
-    - `ModeSerapan.LONGGAR` atau `'longgar'`: Mengonversi akhiran asing (sufiks) ke padanan bahasa Indonesia (misal: `-ty` -> `-tas`, `-tion` -> `-si`).
-    - `ModeSerapan.KETAT` atau `'ketat'`: Hanya melakukan penyesuaian huruf/fonetik dasar secara ketat dan melewati penyesuaian sufiks kata.
 
 ## Lisensi
 
