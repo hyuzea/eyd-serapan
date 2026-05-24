@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+
+# Tool configurations
+.antigravitycli/
+.idea/
+.vscode/
+.DS_Store
+
+# Scratch files
+scratch_check.ts
+
+# Ignore markdown files as requested
+*.md

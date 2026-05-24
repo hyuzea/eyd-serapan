@@ -1,0 +1,32 @@
+{
+  "name": "eyd-serapan",
+  "version": "1.0.0",
+  "description": "Pustaka transliterasi kata serapan asing ke bahasa Indonesia sesuai pedoman EYD",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "bun build.ts",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "bun-types": "^1.1.0",
+    "typescript": "^5.4.0"
+  },
+  "keywords": [
+    "eyd",
+    "serapan",
+    "indonesia",
+    "loanwords",
+    "transliterasi"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module"
+}
