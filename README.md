@@ -50,7 +50,7 @@ console.log(serapan('kenpo', BahasaAsal.JEPANG));       // "kempo" (n sebelum p 
 
 // 4. Menggunakan Mode Penyerapan dengan Opsi
 console.log(serapan('communication', BahasaAsal.INGGRIS, { mode: ModeSerapan.KETAT })); 
-// "komunitasion" (hanya penyesuaian huruf dasar tanpa konversi sufiks -tion)
+// "komunikation" (hanya penyesuaian huruf dasar tanpa konversi sufiks -tion)
 ```
 
 ## API
